@@ -75,6 +75,32 @@ def roadClassLookup(roadclass_identifier):
 	return tags
 
 
+    if 'ispaved' in attrs:
+        if attrs['ispaved'].strip() == '11':
+            tags['surface'] = 'paved'
+        elif attrs['ispaved'].strip() == '12':
+            tags['highway'] = 'unpaved'
+
+    if 'tdirect' in attrs:
+        if attrs['tdirect'].strip() == '325':
+            tags['oneway'] = 'yes'
+        elif attrs['tdirect'].strip() == '324':
+            tags['oneway'] = '-1'
+        elif attrs['tdirect'].strip() == '323':
+            tags['oneway'] = 'no'	
+
+    if 'surfdsc' in attrs:
+        if attrs['surfdsc'].strip() == '345':
+            tags['surface'] = 'cobblestone'
+        elif attrs['surfdsc'].strip() == '346':
+            tags['surface'] = 'dirt'
+        elif attrs['surfdsc'].strip() == '347':
+            tags['surface'] = 'asphalt'						
+        elif attrs['surfdsc'].strip() == '348':
+            tags['surface'] = 'gravel'	
+        elif attrs['surfdsc'].strip() == '350':
+            tags['surface'] = 'asphalt'	
+						
 def filterTags(attrs):
 	if not attrs: return
 
